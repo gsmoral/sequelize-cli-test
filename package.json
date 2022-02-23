@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "express": "^4.17.3",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.16.2"
@@ -15,7 +16,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
     "build": "sequelize db:migrate --env test",
-    "build:seed": "sequelize db:migrate --env test && sequelize db:seed:all --env test",
+    "build:reset": "sequelize db:migrate:undo:all --env test && sequelize db:migrate --env test && sequelize db:seed:all --env test",
     "build:dev": "sequelize db:migrate && sequelize db:seed:all"
   },
   "repository": {
