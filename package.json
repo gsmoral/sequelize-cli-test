@@ -14,7 +14,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
-    "build": "sequelize db:migrate --env test"
+    "build": "sequelize db:migrate --env test && sequelize db:seed:all --env test"
   },
   "repository": {
     "type": "git",
