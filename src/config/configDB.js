@@ -10,8 +10,8 @@ module.exports = {
   "test": {
       username: process.env.CI_DB_USERNAME,
       password: process.env.CI_DB_PASSWORD,
-      database: 'database_test',
-      host: '127.0.0.1',
+      database: process.env.CI_DB_NAME,
+      host: process.env.CI_DB_HOSTNAME,
       port: 5432,
       dialect: 'postgres'
   },
