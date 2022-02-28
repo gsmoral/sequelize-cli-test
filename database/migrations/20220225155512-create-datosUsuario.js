@@ -1,30 +1,26 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('DatosUsuarios', {
       uuid: {
         type: Sequelize.UUID,
         primaryKey: true,
         defaultValue: Sequelize.UUIDV1
       },
-      email: {
-        type: Sequelize.STRING(256),
-        allowNull: false,
-        unique: true,
+      rol: {
+        type: Sequelize.ENUM('superadmin', 'admin', 'profesional', 'administracion')
       },
-      password: {
-        type: Sequelize.STRING(64),
-        allowNull: false,
+      nombre: {
+        type: Sequelize.STRING(45),
+        allowNull: true
       },
-      activo: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+      apellidos: {
+        type: Sequelize.STRING(100),
+        allowNull: true
       },
-      remember_token: {
-        type: Sequelize.STRING
-      },
-      expiration_token: {
-        type: Sequelize.DATE
+      telefono: {
+        type: Sequelize.STRING(45),
+        allowNull: true
       },
       createdAt: {
         allowNull: false,
@@ -47,11 +43,22 @@ module.exports = {
           key: 'uuid'
         },
         onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      UserUuid: {
+        type: Sequelize.UUID,
+        references: {
+          model: {
+            tableName: 'Users'
+          },
+          key: 'uuid'
+        },
+        onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('DatosUsuarios');
   }
 };
